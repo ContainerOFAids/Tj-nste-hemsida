@@ -17,8 +17,9 @@ export const load = (async ({cookies}) => {
             likeCount: activity.likes.length
         }
     });
+    
     const existingUser = await prisma.user.findUnique({
-        where: {name: username}
+        where: {id: user.id}
     });
     
     
