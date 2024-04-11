@@ -14,8 +14,8 @@
             <form action="?/register" method="post" use:enhance>
                 <div class="test">
                     <label class="font-bold text-xl">Username: <input type="text" name="username" class="input font-bold text-white"></label>
-                    <label class="font-bold text-xl">Password: <input type="password" name="password" class="input font-bold text-white"></label>
-                    <label class="font-bold text-xl">Repeat Password: <input type="password" name="password-repeat" class="input font-bold text-white"></label>
+                    <label class="font-bold text-xl">Password: <input type="password" name="password" class="input font-bold text-white" minlength="6"></label>
+                    <label class="font-bold text-xl">Repeat Password: <input type="password" name="password-repeat" class="input font-bold text-white" minlength="6"></label>
                     <label class="font-bold text-xl">Profile Picture: <input type="text" bind:value={s} class="input font-bold text-white"></label>
                     <label><input type="hidden" value={s} name="pic"></label>
                     <div class=" justify-center flex">

@@ -12,6 +12,7 @@ datasource db {
   provider = "sqlite"
   url      = "file:./dev.db"
 }
+
 model User {
   id        String   @id @default(uuid())
   name      String   @unique
@@ -20,10 +21,14 @@ model User {
   password    String
   salt        String
   token       token[]
-  
+  activity    activity[]
+  activityLog activityLog[]
+
+  likes    activity[] @relation("UserLikes")
+  comments comment[]
 
   isAdmin     Boolean @default(false)
-  totalPoints Int     @default(0)
+  
   pic         String  @default("/default-pfp.png")
 }
 
@@ -32,4 +37,40 @@ model token {
   createdAt DateTime @default(now())
   user      User     @relation(fields: [userId], references: [id])
   userId    String
+}
+
+model activity {
+  id          String   @id @default(uuid())
+  createdAt   DateTime @default(now())
+  name        String
+  description String
+
+  suggestedBy   User   @relation(fields: [suggestedById], references: [id])
+  suggestedById String
+
+  isApproved   Boolean       @default(false)
+  approvedById String?
+  activityLog  activityLog[]
+
+  likes    User[]    @relation("UserLikes")
+  comments comment[]
+}
+
+model activityLog {
+  id         String   @id @default(uuid())
+  createdAt  DateTime @default(now())
+  user       User     @relation(fields: [userId], references: [id])
+  userId     String
+  activity   activity @relation(fields: [activityId], references: [id])
+  activityId String
+}
+
+model comment {
+  id         String   @id @default(uuid())
+  createdAt  DateTime @default(now())
+  user       User     @relation(fields: [userId], references: [id])
+  userId     String
+  activity   activity @relation(fields: [activityId], references: [id])
+  activityId String
+  text       String
 }

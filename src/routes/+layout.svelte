@@ -18,12 +18,16 @@
 	
 	<div class=" justify-center flex flex-row gap-10 w-full">
 		<a href="http://localhost:5173/" class="btn h2 font-bold hover:variant-soft-primary">Home</a>
-		<a href="" class="btn h2 font-bold hover:variant-soft-primary">About Us</a>
-		<a href="" class="btn h2 font-bold hover:variant-soft-primary">Profile</a>
+		<a href="http://localhost:5173/tj%C3%A4nster" class="btn h2 font-bold hover:variant-soft-primary">Tjänster</a>
+		<a href="http://localhost:5173/login" class="btn h2 font-bold hover:variant-soft-primary">Log In</a>
 
 	</div>
 	
 	<img src="" alt="" class="profilepic aspect-square">
-
 </div>
 <slot />
+
+<div class=" bg-surface-900 h-56 pt-10 pl-10 mt-10">
+	<header>Epost:</header>
+	<h2 class="h3">Samgus02@edu.umea.se</h2>
+</div>
