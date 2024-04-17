@@ -30,7 +30,8 @@ export const actions: Actions = {
             data: {
                 name: name,
                 description: description,
-                suggestedById: user.id
+                suggestedById: user.id,
+                canapply: false
             }
         });
         if(activity) {

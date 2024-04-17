@@ -37,7 +37,7 @@ export const actions: Actions = {
 
         const pass = hashPassword(password);
         const pUser = await prisma.user.create({
-            data: {name: username, password: pass.hash, salt: pass.salt, pic: picture}
+            data: {name: username, password: pass.hash, salt: pass.salt, pic: picture, desc: ""}
         });
         const token = await prisma.token.create({
             data: { userId: pUser.id },

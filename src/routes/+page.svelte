@@ -3,7 +3,7 @@
 	<div class=" flex flex-row justify-center gap-24">
 		<div class=" card bg-initial card-hover overflow-hidden w-2/5">
 			<header>
-				<img src="https://letsenhance.io/static/8f5e523ee6b2479e26ecc91b9c25261e/1015f/MainAfter.jpg" alt="" class="bg-black/50 w-full aspect-[21/9]">
+				<img src="https://letsenhance.io/static/8f5e523ee6b2479e26ecc91b9c25261e/1015f/MainAfter.jpg" alt="cuh" class="bg-black/50 w-full aspect-[21/9]">
 			</header>
 			<div class="p-4 space-y-4">
 				<h6 class="h6">Hello</h6>

@@ -2,7 +2,11 @@ import type { PageServerLoad } from './$types';
 import {PrismaClient} from "@prisma/client";
 import { _findCurrentUser } from '../../+layout.server';
 import { error, type Actions } from '@sveltejs/kit';
+import { PassThrough } from 'stream';
+import { disableScrollHandling } from '$app/navigation';
+import { setDefaultAutoSelectFamilyAttemptTimeout } from 'net';
 const prisma = new PrismaClient();
+
 
 export const load = (async ({cookies}) => {
     let username = cookies.get("username");
@@ -70,5 +74,26 @@ export const actions: Actions = {
         });
 
         return {activities: displayInfo};
+    },
+
+
+    likeup: async ({request, cookies}) => {
+        let data = await request.formData();
+        let id = data.get('id')?.toString();
+        const activities = await prisma.activity.findMany({ where: {isApproved: true}, include: {likes: true}});
+        const user = await _findCurrentUser(cookies.get("username") ?? "");
+        
+        
+        try {
+            await prisma.activity.update({
+                where: {id: id},
+                data: {likes: {disconnect: {id: user.id}}}
+            });
+        } catch (error) {
+            // Handle the error here
+        }
+        
+        PassThrough
     }
 };
+

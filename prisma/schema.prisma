@@ -17,6 +17,7 @@ model User {
   id        String   @id @default(uuid())
   name      String   @unique
   createdAt DateTime @default(now())
+  desc      String
 
   password    String
   salt        String
@@ -27,9 +28,10 @@ model User {
   likes    activity[] @relation("UserLikes")
   comments comment[]
 
-  isAdmin     Boolean @default(false)
-  
-  pic         String  @default("/default-pfp.png")
+  isAdmin Boolean @default(false)
+
+  pic         String        @default("/default-pfp.png")
+  application application[]
 }
 
 model token {
@@ -54,6 +56,7 @@ model activity {
 
   likes    User[]    @relation("UserLikes")
   comments comment[]
+  canapply Boolean
 }
 
 model activityLog {
@@ -73,4 +76,14 @@ model comment {
   activity   activity @relation(fields: [activityId], references: [id])
   activityId String
   text       String
+}
+
+model application {
+  id            String   @id @default(uuid())
+  createdby     User     @relation(fields: [createdbyid], references: [id])
+  createdbyid   String
+  telefonnummer String
+  epost         String
+  tid           DateTime
+  information   String
 }
