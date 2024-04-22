@@ -11,14 +11,15 @@ const prisma = new PrismaClient();
 export const load = (async ({cookies}) => {
     let username = cookies.get("username");
     const user = await _findCurrentUser(cookies.get("username") ?? "");
-    const activities = await prisma.activity.findMany({ where: {isApproved: true}, include: {likes: true}});
+    const activities = await prisma.activity.findMany({ where: {isApproved: true, canapply: false}, include: {likes: true}});
     const displayInfo = activities.map((activity) => {
         return {
             id: activity.id,
             name: activity.name,
             description: activity.description,
             liked: activity.likes.some((like) => like.id === user.id),
-            likeCount: activity.likes.length
+            likeCount: activity.likes.length,
+            adminlikes: activity.adminlikes
         }
     });
     
@@ -28,7 +29,7 @@ export const load = (async ({cookies}) => {
     
     
 
-    return {activities: displayInfo, existingUser};
+    return {activities: displayInfo, existingUser };
 }) satisfies PageServerLoad;
 
 export const actions: Actions = {
@@ -80,20 +81,60 @@ export const actions: Actions = {
     likeup: async ({request, cookies}) => {
         let data = await request.formData();
         let id = data.get('id')?.toString();
-        const activities = await prisma.activity.findMany({ where: {isApproved: true}, include: {likes: true}});
-        const user = await _findCurrentUser(cookies.get("username") ?? "");
+        
         
         
         try {
             await prisma.activity.update({
                 where: {id: id},
-                data: {likes: {disconnect: {id: user.id}}}
+                data: {
+                    adminlikes: { increment: 1 }
+                }
             });
         } catch (error) {
             // Handle the error here
         }
         
         PassThrough
+    },
+    likedown: async ({request, cookies}) => {
+        let data = await request.formData();
+        let id = data.get('id')?.toString();
+        
+        
+        
+        try {
+            await prisma.activity.update({
+                where: {id: id},
+                data: {
+                    adminlikes: { decrement: 1 }
+                }
+            });
+        } catch (error) {
+            // Handle the error here
+        }
+        
+        
+    },
+    canapply: async ({request, cookies}) => {
+        let data = await request.formData();
+        let id = data.get('id')?.toString();
+        
+        
+        
+        try {
+            await prisma.activity.update({
+                where: {id: id},
+                data: {
+                    canapply: true
+                }
+            });
+        } catch (error) {
+            // Handle the error here
+        }
+        
+        
     }
+    
 };
 

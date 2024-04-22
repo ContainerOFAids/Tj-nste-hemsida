@@ -14,9 +14,11 @@ export const load = (async ({cookies}) => {
     let user = prismaToken.user;
     let admin = user.isAdmin
 
+    const activities = await prisma.activity.findMany({ where: {suggestedBy: user, suggestedById: user.id}});
+    const application = await prisma.application.findMany({ where: {createdby: user}});
     
     
-    return {isAdmin: admin, user};
+    return {isAdmin: admin, user, activities, application};
 }) satisfies PageServerLoad;
 
 export const actions: Actions = {

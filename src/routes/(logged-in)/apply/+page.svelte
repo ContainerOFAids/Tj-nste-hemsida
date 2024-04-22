@@ -18,8 +18,6 @@
                 <button class="btn bg-primary-500">lägg till tjänst</button>
             {/if}
         </div>
-        
-        
     </li>
     {/each}
 </main>

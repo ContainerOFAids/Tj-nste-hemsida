@@ -12,8 +12,8 @@
             <a href="http://localhost:5173/tj%C3%A4nster"><i class="fa-solid fa-2xl mb-5 fa-rotate-left rounded-full hover:variant-soft-primary "></i></a>
         </div>
         <form action="?/suggest" method="post" use:enhance >
-            <label class="h3">Activity Name: <input type="text" name="name" class="input"></label>
-            <label class="h3">Description: <input type="textarea" name="desc" class="input"></label>
+            <label class="h3">Activity Name: <input type="text" name="name" class="input text-white "></label>
+            <label class="h3">Description: <textarea  name="desc" class="textarea text-white"></textarea></label>
             <button class="btn variant-filled-primary hover:bg-orange-200">Suggest</button>
         </form>
     </div>
