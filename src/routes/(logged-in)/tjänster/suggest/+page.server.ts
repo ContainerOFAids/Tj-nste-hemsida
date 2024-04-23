@@ -31,7 +31,8 @@ export const actions: Actions = {
                 name: name,
                 description: description,
                 suggestedById: user.id,
-                canapply: false
+                canapply: false,
+                adminlikes: 0
             }
         });
         if(activity) {

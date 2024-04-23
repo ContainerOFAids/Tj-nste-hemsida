@@ -7,10 +7,10 @@
     let s ="";
 </script>
 
-<main class="flex items-center justify-center flex-col">
-    <header class="bg-surface-100-800-token w-1/3 pl-5 text-2xl font-bold capitalize pt-3 pb-3">Register</header>
+<main class="flex items-center flex-col">
+    <header class="bg-surface-100-800-token w-1/3 pl-5 text-2xl font-bold capitalize pt-3 pb-3 mt-20">Register</header>
     <div class="registerContainer flex flex-col items-center bg-gradient-to-br variant-gradient-primary-secondary w-1/3 pb-10 pt-4">
-        <div class="registerContainerForm">
+        <div class="registerContainerForm w-3/4">
             <form action="?/register" method="post" use:enhance>
                 <div class="test">
                     <label class="font-bold text-xl">Username: <input type="text" name="username" class="input font-bold text-white"></label>

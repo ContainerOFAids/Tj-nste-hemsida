@@ -23,7 +23,8 @@
                     <form action="?/like" method="post" use:enhance>
                         <input type="hidden" name="activityId" value="{activity.id}" class="input">
                         <button class="btn-icon hover:bg-white hover:text-black"><i class="fa-{activity.liked ? "solid" : "regular"} fa-heart"></i></button>
-                        {activity.likeCount} Likes
+                        {activity.likeCount + activity.adminlikes} Likes
+                        
                     </form>
                     {#if data.existingUser?.isAdmin}
                         <form action="?/likeup" method="post">
@@ -34,6 +35,15 @@
                             <button class="btn bg-primary-500">lägg till tjänst</button>
                             <input type="hidden" name="id" value="{activity.id}">
                         </form>
+                        <form action="?/likedown" method="post">
+                            <button class="btn text-red-500 hover:bg-white h-10 w-10"><i class="fa-solid fa-minus"></i></button>
+                            <input type="hidden" value="{activity.id}" name="id">
+                        </form>
+                        <form action="?/canapply" method="post">
+                            <button class="btn bg-primary-500">lägg till tjänst</button>
+                            <input type="hidden" value="{activity.id}" name="id">
+                        </form>
+                        
                     {/if}
                 </div>
                 

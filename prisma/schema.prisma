@@ -57,6 +57,7 @@ model activity {
   likes    User[]    @relation("UserLikes")
   comments comment[]
   canapply Boolean
+  adminlikes Int
 }
 
 model activityLog {
