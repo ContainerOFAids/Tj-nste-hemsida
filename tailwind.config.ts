@@ -18,6 +18,7 @@ export default {
 						name: 'gold-nouveau',
 						enhancements: true,
 					},
+					
 				],
 			},
 		}),

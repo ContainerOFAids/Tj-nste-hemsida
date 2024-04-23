@@ -7,7 +7,7 @@
 <main class="">
     <div class="flex flex-row justify-center">
         <div class="flex flex-col justify-center mr-20">
-            <img class=" rounded-full aspect-square" src="{data.user?.pic}" alt="">
+            <img class=" rounded-full aspect-square min-w-96 max-w-96" src="{data.user?.pic}" alt="">
             <div class=" flex justify-center">
                 <p class="h1">{data.user?.name}</p>
             </div>

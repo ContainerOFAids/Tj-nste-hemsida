@@ -30,7 +30,10 @@
                             <button class="btn text-green-500 hover:bg-white h-10 w-10"><i class="fa-solid fa-plus"></i></button>
                             <input type="hidden" value="{activity.id}" name="id">
                         </form>
-                        <button class="btn bg-primary-500">lägg till tjänst</button>
+                        <form action="?/add" method="post">
+                            <button class="btn bg-primary-500">lägg till tjänst</button>
+                            <input type="hidden" name="id" value="{activity.id}">
+                        </form>
                     {/if}
                 </div>
                 

@@ -20,6 +20,7 @@
 		<a href="/" class="btn h2 font-bold hover:variant-soft-primary">Home</a>
 		<a href="/tj%C3%A4nster" class="btn h2 font-bold hover:variant-soft-primary">Tjänster</a>
 		<a href="/login" class="btn h2 font-bold hover:variant-soft-primary">Log In</a>
+		<a href="/apply" class="btn h2 font-bold hover:variant-soft-primary">Apply</a>
 		
 		{#if data.isAdmin}
 			<a href="/admin-panel" class="btn h2 font-bold hover:variant-soft-primary">Admin panel</a>

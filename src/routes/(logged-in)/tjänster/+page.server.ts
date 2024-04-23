@@ -11,7 +11,7 @@ const prisma = new PrismaClient();
 export const load = (async ({cookies}) => {
     let username = cookies.get("username");
     const user = await _findCurrentUser(cookies.get("username") ?? "");
-    const activities = await prisma.activity.findMany({ where: {isApproved: true}, include: {likes: true}});
+    const activities = await prisma.activity.findMany({ where: {isApproved: true, canapply: false}, include: {likes: true}});
     const displayInfo = activities.map((activity) => {
         return {
             id: activity.id,
@@ -94,6 +94,20 @@ export const actions: Actions = {
         }
         
         PassThrough
+    },
+    add: async ({request, cookies}) => {
+        let data = await request.formData();
+        let activityid = data.get('id')?.toString();
+        
+        
+        try {
+            await prisma.activity.update({
+                where: {id: activityid},
+                data: {canapply: true}
+            });
+        } catch (error) {
+            // Handle the error here
+        }
     }
 };
 
